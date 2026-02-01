@@ -10,7 +10,7 @@ export default function Index() {
       </Text>
       <Text>Hi</Text>
       <TouchableOpacity onPress={toggleDarkMode}>
-        <Text>Toggle the mode</Text>
+        <Text style={styles.tombol}>Toggle the mode</Text>
       </TouchableOpacity>
     </View>
   );
@@ -26,5 +26,11 @@ const styles = StyleSheet.create({
   },
   content: {
     fontSize: 20,
+  },
+  tombol: {
+    backgroundColor: "green",
+    padding: 10,
+    borderRadius: 5,
+    color: "white",
   },
 });
