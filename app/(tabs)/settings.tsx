@@ -1,20 +1,18 @@
 import useTheme from "@/hooks/useTheme";
+import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function Index() {
+const SettingsScreen = () => {
   const { toggleDarkMode } = useTheme();
   return (
     <View style={styles.container}>
-      <Text style={styles.content}>
-        Edit app/index.tsx to edit this screen.
-      </Text>
-      <Text>Hi</Text>
+      <Text>SettingsScreen</Text>
       <TouchableOpacity onPress={toggleDarkMode}>
         <Text>Toggle the mode</Text>
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -28,3 +26,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
+
+export default SettingsScreen;
