@@ -1,30 +1,48 @@
+import { createSettingsStyles } from "@/assets/styles/settings.styles";
+import DangerZone from "@/components/DangerZone";
+import Prefrences from "@/components/Prefrences";
+import ProgressStats from "@/components/ProgressStats";
 import useTheme from "@/hooks/useTheme";
+import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SettingsScreen = () => {
-  const { toggleDarkMode } = useTheme();
+  const { colors } = useTheme();
+  const settingsStyle = createSettingsStyles(colors);
+
   return (
-    <View style={styles.container}>
-      <Text>SettingsScreen</Text>
-      <TouchableOpacity onPress={toggleDarkMode}>
-        <Text>Toggle the mode</Text>
-      </TouchableOpacity>
-    </View>
+    <LinearGradient
+      colors={colors.gradients.background}
+      style={settingsStyle.container}
+    >
+      <SafeAreaView style={settingsStyle.safeArea}>
+        <View style={settingsStyle.header}>
+          <View style={settingsStyle.titleContainer}>
+            <LinearGradient
+              colors={colors.gradients.primary}
+              style={settingsStyle.iconContainer}
+            >
+              <Ionicons name="settings" size={28} color="#fff" />
+            </LinearGradient>
+            <Text style={settingsStyle.title}>Settings</Text>
+          </View>
+        </View>
+
+        <ScrollView
+          style={settingsStyle.scrollView}
+          contentContainerStyle={settingsStyle.content}
+          showsVerticalScrollIndicator={false}
+        >
+          <ProgressStats />
+          <Prefrences />
+          <DangerZone />
+        </ScrollView>
+      </SafeAreaView>
+    </LinearGradient>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    gap: 10,
-  },
-  content: {
-    fontSize: 20,
-  },
-});
 
 export default SettingsScreen;
